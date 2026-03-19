@@ -1,8 +1,8 @@
-// Last updated: 20/03/2026, 02:21:30
+// Last updated: 20/03/2026, 02:21:52
 1class Solution {
 2public:
 3    string reverseWords(string s) {
-4        stack<string> st;
+4      
 5        string res="";
 6        string curr="";
 7        for (int i = 0; i < s.size(); i++) {

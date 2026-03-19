@@ -1,12 +1,12 @@
-// Last updated: 19/03/2026, 23:23:48
+// Last updated: 20/03/2026, 00:13:48
 1class Solution {
 2public:
 3    string convert(string s, int numRows) {
 4        if(numRows==1)return s;
 5        string row = "";
 6        int n = s.size();
-7        row.append(n,'#');
-8        vector<string> mat(numRows,row);
+7       
+8        vector<string> mat(numRows);
 9        
 10        int k = 0;
 11        int i=0;
@@ -15,7 +15,7 @@
 14        int dia =0;
 15
 16        while(k!=n){
-17            mat[i][j]=s[k];
+17            mat[i]+=s[k];
 18            if(i==mat.size()-1 ){
 19                dia=1;
 20                per=0;
@@ -38,16 +38,13 @@
 37        }
 38         k =n;
 39        string res="";
-40        for(int i =0;i<mat.size()&&k;i++){
-41            for(int j = 0; j<mat[0].size()&&k;j++){
-42                if(mat[i][j]!='#'){
-43                    res+=mat[i][j];
-44                }
-45            }
-46        }
-47        return res;
-48
-49
-50        
-51    }
-52};
+40        for(auto &row: mat){
+41            res+=row;
+42        }
+43        
+44        return res;
+45
+46
+47        
+48    }
+49};

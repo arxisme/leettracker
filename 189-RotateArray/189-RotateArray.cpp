@@ -1,24 +1,28 @@
-// Last updated: 23/03/2026, 20:18:03
+// Last updated: 23/03/2026, 20:56:59
 1class Solution {
 2public:
 3    void rotate(vector<int>& nums, int k) {
 4        int n = nums.size();
-5        k %= n;
+5        k = k % n;
 6
-7        int count = 0;
-8
-9        for (int start = 0; count < n; start++) {
-10            int current = start;
-11            int prev = nums[start];
-12
-13            do {
-14                int next = (current + k) % n;
-15                int temp = nums[next];
-16                nums[next] = prev;
-17                prev = temp;
-18                current = next;
-19                count++;
-20            } while (start != current);
-21        }
-22    }
-23};
+7        int g = 0;
+8        int j = __gcd(n, k);   // FIX
+9
+10        while (j--) {
+11            int t = g++;
+12            int start = t;
+13            int s = nums[t];
+14
+15            t = (t + k) % n;
+16
+17            while (t != start) {
+18                int temp = nums[t];
+19                nums[t] = s;
+20                s = temp;
+21                t = (t + k) % n;
+22            }
+23
+24            nums[start] = s;
+25        }
+26    }
+27};

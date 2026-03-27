@@ -1,40 +1,17 @@
-// Last updated: 19/03/2026, 21:18:25
-class Solution {
-public:
-    void rotate(vector<vector<int>>& matrix) {
-        int temp;
-        for(int i = 0 ; i<matrix.size(); i++){
-            for(int j=0 ; j<matrix[i].size(); j++){
-                if(j>i){
-                    temp = matrix[i][j];
-                    matrix[i][j]= matrix[j][i];
-                    matrix[j][i]= temp;
-                    
-
-
-                
-               
-                }
-            }
-
-        }
-        int lenght = matrix[0].size();
-        for(int i = 0 ; i<lenght; i++){
-            for(int j =0; j<(lenght/2); j++){
-                if(j<(lenght/2)){
-                    temp = matrix[i][j];
-                     matrix[i][j]= matrix[i][lenght-j-1];
-                     matrix[i][lenght-j-1]= temp;
-
-
-
-
-                }
-                
-                
-            }
-
-        }
-        
-    }
-};
+// Last updated: 27/03/2026, 23:16:05
+1class Solution {
+2public:
+3    void rotate(vector<vector<int>>& matrix) {
+4        for(int i =0; i<matrix.size();i++){
+5            for(int j = i+1 ; j<matrix.size();j++){
+6                swap(matrix[j][i],matrix[i][j]);
+7            }
+8        }
+9        int n = matrix.size()-1;
+10        for(int i =0; i<matrix.size();i++){
+11            reverse(matrix[i].begin(), matrix[i].end());            
+12        }
+13        return;
+14        
+15    }
+16};

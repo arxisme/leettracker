@@ -1,45 +1,25 @@
-// Last updated: 19/03/2026, 21:17:53
-class Solution {
-public:
-    void setZeroes(vector<vector<int>>& matrix) {
-        vector<vector<int>> val;
-        val = matrix;
-       
-        for(int i = 0 ; i < matrix.size(); i++){
-            for(int j=0 ; j < matrix[i].size() ; j++){
-                if(matrix[i][j]==0 ){
-                    for(int a = 0 ; a<j; a++ ){
-                        matrix[i][a]=0; 
-                    }
-                    for(int a = j+1 ; a < matrix[i].size(); a++){
-                        val[i][a]=0;
-
-                    }
-
-                    for(int a = 0 ; a < i; a++){
-                        matrix[a][j]=0;
-
-                    }
-                    for(int a = i+1 ; a < matrix.size(); a++){
-                        val[a][j]=0;
-
-                    }
-
-
-                    
-
-                }
-                else{
-                    if(val[i][j]==0){
-                        matrix[i][j]=0;
-
-                    }
-
-
-
-                }
-            }
-        }
-        
-    }
-};
+// Last updated: 28/03/2026, 00:06:21
+1class Solution {
+2public:
+3    void setZeroes(vector<vector<int>>& matrix) {
+4        vector<int> r(matrix.size(),0);
+5        vector<int> c(matrix[0].size(),0);
+6        for(int i = 0 ;i<matrix.size();i++){
+7            for(int j =0; j<matrix[0].size();j++){
+8                if(matrix[i][j]==0){
+9                    r[i]=1;
+10                    c[j]=1;
+11
+12                }
+13            }
+14        }
+15        for(int i = 0 ;i<matrix.size();i++){
+16            for(int j =0; j<matrix[0].size();j++){
+17                if(r[i]||c[j]){
+18                    matrix[i][j]=0;
+19                }
+20            }
+21        }
+22        
+23    }
+24};

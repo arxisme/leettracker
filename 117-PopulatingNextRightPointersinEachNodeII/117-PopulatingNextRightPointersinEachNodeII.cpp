@@ -1,4 +1,4 @@
-// Last updated: 03/04/2026, 02:24:22
+// Last updated: 03/04/2026, 02:27:37
 1/*
 2// Definition for a Node.
 3class Node {
@@ -30,25 +30,32 @@
 29        Node* prev = NULL;
 30        Node* leftM = NULL;
 31        while (root) {
-32            if (root->left) {
-33                if (prev) {
-34                    prev->next = root->left;
-35                }
-36                prev = root->left;
-37                if (!leftM)
-38                    leftM = root->left;
-39            }
-40            if (root->right) {
-41                if (prev) {
-42                    prev->next = root->right;
-43                }
-44                prev = root->right;
-45                if (!leftM)
-46                    leftM = root->right;
-47            }
-48            root = root->next;
-49        }
-50
-51        solver(leftM);
-52    }
-53};
+32
+33            if (root->left) {
+34                if (prev) {
+35                    prev->next = root->left;
+36                }
+37                prev = root->left;
+38                if (!leftM)
+39                    leftM = root->left;
+40            }
+41            if (root->right) {
+42                if (prev) {
+43                    prev->next = root->right;
+44                }
+45                prev = root->right;
+46                if (!leftM)
+47                    leftM = root->right;
+48            }
+49            root = root->next;
+50            if(!root){
+51                root = leftM;
+52                leftM =NULL;
+53                prev =NULL;
+54            }
+55            
+56        }
+57
+58       
+59    }
+60};

@@ -1,4 +1,4 @@
-// Last updated: 03/04/2026, 01:45:22
+// Last updated: 03/04/2026, 02:22:26
 1/*
 2// Definition for a Node.
 3class Node {
@@ -20,27 +20,32 @@
 19class Solution {
 20public:
 21    Node* connect(Node* root) {
-22        queue<Node*> q;
-23        q.push(root);
-24        q.push(NULL);
-25        Node* next = NULL;
-26        while(!q.empty()){
-27            if(q.front() == NULL)break;
-28            while(q.front()!=NULL){
-29               Node* curr = q.front(); q.pop();
-30               curr->next = next;
-31               if(curr->right)q.push(curr->right);
-32               if(curr->left)q.push(curr->left);
-33               next = curr;
-34
-35            }
-36            q.pop();
-37            q.push(NULL);
-38            next = NULL;
-39
-40
-41        }
-42        return root;
-43        
-44    }
-45};
+22        solver(root, NULL, NULL);
+23        return root;
+24    }
+25    void solver(Node* root, Node* prev, Node* leftM) {
+26        if (!root)
+27            return;
+28        while (root) {
+29            if (root->left) {
+30                if (prev) {
+31                    prev->next = root->left;
+32                }
+33                prev = root->left;
+34                if (!leftM)
+35                    leftM = root->left;
+36            }
+37            if (root->right) {
+38                if (prev) {
+39                    prev->next = root->right;
+40                }
+41                prev = root->right;
+42                if (!leftM)
+43                    leftM = root->right;
+44            }
+45            root = root->next;
+46        }
+47
+48        solver(leftM, NULL, NULL);
+49    }
+50};

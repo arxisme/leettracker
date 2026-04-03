@@ -1,19 +1,19 @@
-// Last updated: 03/04/2026, 21:00:42
+// Last updated: 03/04/2026, 21:41:15
 1class Solution {
 2public:
 3    void solve(vector<vector<char>>& board) {
 4        int m = board.size();
 5        int n = board[0].size();
-6        // 1. Left & Right columns
+6        // left & right
 7        for (int i = 0; i < m; i++) {
-8            dfs(board, i, 0);     // left edge
-9            dfs(board, i, n - 1); // right edge
+8            dfs(board, i, 0);
+9            dfs(board, i, n - 1);
 10        }
 11
-12        // 2. Top & Bottom rows
-13        for (int j = 0; j < n; j++) {
-14            dfs(board, 0, j);     // top edge
-15            dfs(board, m - 1, j); // bottom edge
+12        // top & bottom (skip corners)
+13        for (int j = 1; j < n - 1; j++) {
+14            dfs(board, 0, j);
+15            dfs(board, m - 1, j);
 16        }
 17        for (int i = 0; i < m; i++) {
 18            for (int j = 0; j < n; j++) {
@@ -30,7 +30,7 @@
 29        int n = board[0].size();
 30        if (i < 0 || i >= m || j < 0 || j >= n)
 31            return;
-32        if (board[i][j] != 'O' )
+32        if (board[i][j] != 'O')
 33            return;
 34        board[i][j] = '#';
 35

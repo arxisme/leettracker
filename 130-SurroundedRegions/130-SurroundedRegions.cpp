@@ -1,4 +1,4 @@
-// Last updated: 03/04/2026, 21:41:23
+// Last updated: 03/04/2026, 21:42:13
 1class Solution {
 2public:
 3    void solve(vector<vector<char>>& board) {
@@ -26,18 +26,16 @@
 25        }
 26    }
 27    void dfs(vector<vector<char>>& board, int i, int j) {
-28        int m = board.size();
-29        int n = board[0].size();
-30        if (i < 0 || i >= m || j < 0 || j >= n)
+28        int m = board.size(), n = board[0].size();
+29
+30        if (i < 0 || i >= m || j < 0 || j >= n || board[i][j] != 'O')
 31            return;
-32        if (board[i][j] != 'O')
-33            return;
-34        board[i][j] = '#';
-35
-36        vector<int> dx = {-1, 0, 1, 0};
-37        vector<int> dy = {0, -1, 0, 1};
-38        for (int k = 0; k < dx.size(); k++) {
-39            dfs(board, i + dx[k], j + dy[k]);
-40        }
-41    }
-42};
+32
+33        board[i][j] = '#';
+34
+35        dfs(board, i + 1, j);
+36        dfs(board, i - 1, j);
+37        dfs(board, i, j + 1);
+38        dfs(board, i, j - 1);
+39    }
+40};

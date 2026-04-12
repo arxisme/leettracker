@@ -1,39 +1,40 @@
-// Last updated: 24/03/2026, 02:04:27
+// Last updated: 12/04/2026, 14:18:12
 1class Solution {
 2public:
 3    vector<vector<int>> threeSum(vector<int>& nums) {
 4        sort(nums.begin(), nums.end());
-5
-6        vector<vector<int>> res;
-7        for (int i = 0; i < nums.size() - 2 && nums[i] <= 0;) {
-8            int j = i + 1;
-9            int k = nums.size() - 1;
-10            while (j < k) {
-11                int sum = nums[i] + nums[j] + nums[k];
-12                if (sum == 0) {
-13                    res.push_back({nums[i], nums[j], nums[k]});
-14                    j++;
-15                    while (j < k && nums[j] == nums[j - 1])
-16                        j++;
-17                    k--;
-18                     while (j < k && nums[k] == nums[k + 1])
-19                        k--;
-20                } else if (sum > 0) {
-21                    k--;
-22                    while (j < k && nums[k] == nums[k + 1])
-23                        k--;
-24
-25                } else {
-26                    j++;
-27                    while (j < k && nums[j] == nums[j - 1])
-28                        j++;
-29                }
-30            }
-31
-32            i++;
-33            while (i < nums.size() && nums[i] == nums[i - 1])
-34                i++;
-35        }
-36        return res;
-37    }
-38};
+5        vector<vector<int>> res;
+6        int n = nums.size();
+7
+8        for (int i = 0; i < nums.size() - 2 && nums[i] <= 0; i++) {
+9
+10            int target = -nums[i];
+11            int l = i + 1;
+12            int r = n - 1;
+13            while (l < r) {
+14                int curr = nums[l] + nums[r];
+15                if (curr == target) {
+16                    res.push_back({nums[i], nums[l], nums[r]});
+17                    while (l < r && nums[l] == nums[l + 1])
+18                        l++;
+19                    while (l < r && nums[r] == nums[r - 1])
+20                        r--;
+21
+22                    l++;
+23                    r--;
+24                   
+25                } else if (curr < target) {
+26                   
+27                    l++;
+28                } else {
+29                   
+30                    r--;
+31                }
+32            }
+33
+34            while (i < n - 1 && nums[i] == nums[i + 1])
+35                i++;
+36        }
+37        return res;
+38    }
+39};

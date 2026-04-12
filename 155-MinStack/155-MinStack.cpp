@@ -1,4 +1,4 @@
-// Last updated: 12/04/2026, 19:00:41
+// Last updated: 12/04/2026, 19:00:48
 1class MinStack {
 2public: 
 3    stack<int> st;
